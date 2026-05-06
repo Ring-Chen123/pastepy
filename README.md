@@ -35,8 +35,6 @@ Start here:
 - Config: [modules/config/env_loader.py](modules/config/env_loader.py)
 - Rate Limit: [modules/rate_limit/token_bucket.py](modules/rate_limit/token_bucket.py)
 
-這五個模組是 pastepy 的核心門面，會優先保持小、穩定、容易理解。
-
 ## How To Use
 
 1. Open the module you need.
