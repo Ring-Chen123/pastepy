@@ -27,9 +27,10 @@ edge AI / streaming ASR 相關應用。
 
 目前功能涵蓋：
 
-- HTTP、retry、cache、rate limit、CLI、logging
+- Core MVP：HTTP、retry、LRU cache、env loader、rate limit
+- Practical utilities：CLI、logging、file IO、JSON、CSV、ZIP、path helpers
 - 檔案、JSON、CSV、ZIP、路徑、atomic write、file lock
-- SRT / VTT 字幕、WAV / PCM16 音訊、ASR transcript cleanup
+- Experimental edge expansion：SRT / VTT 字幕、WAV / PCM16 音訊、ASR transcript cleanup
 - streaming ASR partial/final text、endpointing、speaker turns
 - embedding/vector helpers、model output post-processing、model manifest
 - device probe、OTA markers、network checks、resource policy
@@ -78,7 +79,34 @@ Every module should follow these rules:
 
 See [docs/design.md](docs/design.md) for the full rules.
 
-## Modules
+## Core MVP
+
+The core MVP is the stable front door of pastepy. Start here if you want the
+smallest useful set of copy-paste tools:
+
+| Need | File | Why |
+| --- | --- | --- |
+| HTTP requests | [http/simple_http.py](http/simple_http.py) | Minimal GET/POST with timeout, retry, and JSON helpers. |
+| Retry logic | [retry/backoff.py](retry/backoff.py) | Simple exponential backoff for unstable calls. |
+| Small cache | [cache/lru.py](cache/lru.py) | Fixed-size LRU cache for repeated work. |
+| Config | [config/env_loader.py](config/env_loader.py) | Tiny `.env` loader with override support. |
+| Rate limiting | [rate_limit/token_bucket.py](rate_limit/token_bucket.py) | Token bucket limiter for APIs and device actions. |
+
+These modules are intentionally small and should remain conservative.
+
+## Module Maturity
+
+pastepy has grown beyond the initial MVP. To keep the project focused, modules
+are grouped by maturity:
+
+- **Core MVP:** stable, front-page modules that define the project.
+- **Practical utilities:** general-purpose helpers that are useful but secondary.
+- **Experimental edge expansion:** edge AI / ASR / model ops helpers that are
+  useful for specialized deployments and may be refined more aggressively.
+
+See [docs/maturity.md](docs/maturity.md) for the full policy.
+
+## Full Module Index
 
 pastepy currently includes 41 single-file modules and 311 public entry points.
 
@@ -117,7 +145,11 @@ For the next edge/embedded AI expansion backlog, see
 
 - [csv_tools/csv_rows.py](csv_tools/csv_rows.py): read, write, append, and inspect CSV rows.
 
-### Edge AI / ASR
+### Experimental Edge AI / ASR
+
+These modules are intentionally marked experimental. They are still
+copy-pasteable and self-tested, but they cover specialized edge AI workflows
+and may change faster than the Core MVP.
 
 - [asr/streaming_text.py](asr/streaming_text.py): partial/final transcript normalization, stabilization, merge, display, wrapping, and context trimming.
 - [asr/endpointing_tools.py](asr/endpointing_tools.py): frame sizing, speech/silence thresholds, endpoint detection, and flush timing helpers.

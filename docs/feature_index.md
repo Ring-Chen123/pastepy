@@ -3,7 +3,17 @@
 This index groups pastepy modules by the problem they solve. Every file is
 copy-pasteable, standard-library only, and has a direct self-test.
 
-## Edge AI / ASR
+## Core MVP
+
+| Category | File | Public API | Use When |
+| --- | --- | --- | --- |
+| HTTP | `http/simple_http.py` | `Response`, `get`, `post` | Small GET/POST calls without requests. |
+| Retry | `retry/backoff.py` | `retry` | Retrying unstable operations. |
+| LRU Cache | `cache/lru.py` | `LRUCache` | Caching repeated work with fixed-size eviction. |
+| Config | `config/env_loader.py` | `load_env` | Loading small `.env` files. |
+| Rate Limit | `rate_limit/token_bucket.py` | `TokenBucket` | Limiting API calls or device actions. |
+
+## Experimental Edge AI / ASR
 
 | Category | File | Public API | Use When |
 | --- | --- | --- | --- |
@@ -48,7 +58,6 @@ copy-pasteable, standard-library only, and has a direct self-test.
 
 | Category | File | Public API | Use When |
 | --- | --- | --- | --- |
-| HTTP | `http/simple_http.py` | `Response`, `get`, `post` | Small GET/POST calls without requests. |
 | URLs | `net/url_tools.py` | `encode_params`, `add_query`, `get_query`, `remove_query`, `join_url`, `is_http_url` | Editing query strings and joining URLs. |
 | Network Checks | `net/network_checks.py` | `resolve_host`, `can_resolve`, `tcp_check`, `http_check`, `local_ip`, `is_tls_url`, `allowlist_url`, `denylist_url`, `reconnect_delay`, `wait_for_tcp` | Diagnosing edge connectivity and validating outbound targets. |
 | CLI | `cli/args.py` | `parse_args`, `get_flag`, `has_flag`, `env_or_flag`, `require_flag` | Tiny scripts with a few command-line flags. |
@@ -56,10 +65,7 @@ copy-pasteable, standard-library only, and has a direct self-test.
 | Device Ops | `ops/device_ops.py` | `write_pid`, `read_pid`, `is_process_alive`, `write_heartbeat`, `read_heartbeat`, `heartbeat_stale`, `uptime_since`, `write_json_marker`, `read_json_marker`, `device_id`, `local_hostname`, `config_diff`, `merge_config`, `feature_enabled`, `rollout_enabled`, `low_disk`, `write_crash_marker`, `write_last_good`, `make_diagnostic_bundle` | Writing local reliability markers and diagnostic bundles for field devices. |
 | OTA | `update/ota_tools.py` | `read_ota_manifest`, `write_ota_manifest`, `parse_version`, `ota_is_newer`, `mark_staged`, `mark_rollback`, `update_locked`, `create_update_lock`, `clear_update_lock`, `update_ready` | Managing simple local OTA state and rollback markers. |
 | Logging | `log/simple_logger.py` | `Logger`, `make_logger` | Timestamped logs without logging setup. |
-| Retry | `retry/backoff.py` | `retry` | Retrying unstable operations. |
-| Rate Limit | `rate_limit/token_bucket.py` | `TokenBucket` | Limiting API calls or device actions. |
 | Time | `time_tools/time_tools.py` | `Stopwatch`, `now_iso`, `unix_ms`, `format_duration`, `parse_duration`, `sleep_until` | Timing, timestamps, and simple delays. |
-| Config | `config/env_loader.py` | `load_env` | Loading small `.env` files. |
 | Hashing | `crypto/hash_tools.py` | `sha256_bytes`, `sha256_text`, `sha256_file`, `hmac_sha256`, `random_token`, `constant_time_equal` | Checksums, signatures, and secure tokens. |
 
 ## Choosing Quickly
