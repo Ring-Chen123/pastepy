@@ -1,4 +1,4 @@
-# pastepy Design Principles
+﻿# pastepy Design Principles
 
 pastepy is not a package-first library. It is a set of copy-pasteable,
 zero-dependency Python modules for edge devices, restricted systems, and places
@@ -18,12 +18,12 @@ No installation. No hidden dependencies. No unnecessary abstraction.
 
 Good:
 
-- `http/simple_http.py`
-- `retry/backoff.py`
+- `modules/http/simple_http.py`
+- `modules/retry/backoff.py`
 
 Bad:
 
-- `http/client.py` importing `core/utils.py`
+- `modules/http/client.py` importing `core/utils.py`
 
 ## 2. Standard Library Only
 
@@ -167,27 +167,30 @@ Recommended repository structure:
 
 ```text
 pastepy/
-  cache/
-    lru.py
-    ttl_cache.py
-  config/
-    env_loader.py
+  assets/
+    icon.png
   docs/
     design.md
     feature_index.md
     maturity.md
     roadmap.md
-  fs/
-    atomic_file.py
-    file_lock.py
-  http/
-    simple_http.py
-  rate_limit/
-    token_bucket.py
-  retry/
-    backoff.py
-  storage/
-    json_store.py
+  modules/
+    cache/
+      lru.py
+      ttl_cache.py
+    config/
+      env_loader.py
+    fs/
+      atomic_file.py
+      file_lock.py
+    http/
+      simple_http.py
+    rate_limit/
+      token_bucket.py
+    retry/
+      backoff.py
+    storage/
+      json_store.py
   README.md
 ```
 
