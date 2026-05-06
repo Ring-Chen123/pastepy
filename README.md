@@ -7,6 +7,31 @@
 pastepy is a collection of **zero-dependency, copy-pasteable Python modules**
 for edge devices, restricted environments, and real-world scripts.
 
+## 中文簡介
+
+pastepy 是一組 **零依賴、可直接複製貼上使用的 Python 單檔工具**，
+面向 edge devices、embedded systems、無法安裝套件的受限環境，以及
+edge AI / streaming ASR 相關應用。
+
+核心目標：
+
+- 不需要 `pip install`
+- 只使用 Python standard library
+- 每個模組都是獨立單檔
+- 可以直接複製到其他專案或設備上使用
+- 適合低資源、離線、部署受限的環境
+
+目前功能涵蓋：
+
+- HTTP、retry、cache、rate limit、CLI、logging
+- 檔案、JSON、CSV、ZIP、路徑、atomic write、file lock
+- SRT / VTT 字幕、WAV / PCM16 音訊、ASR transcript cleanup
+- streaming ASR partial/final text、endpointing、speaker turns
+- embedding/vector helpers、model output post-processing、model manifest
+- device probe、OTA markers、network checks、resource policy
+
+完整分類索引請看 [docs/feature_index.md](docs/feature_index.md)。
+
 ## The Problem
 
 Sometimes `pip install` is not available:
@@ -51,7 +76,7 @@ See [docs/design.md](docs/design.md) for the full rules.
 
 ## Modules
 
-pastepy currently includes 36 single-file modules and 256 public entry points.
+pastepy currently includes 41 single-file modules and 311 public entry points.
 
 For a searchable-by-category overview, see
 [docs/feature_index.md](docs/feature_index.md).
@@ -90,6 +115,11 @@ For the next edge/embedded AI expansion backlog, see
 
 ### Edge AI / ASR
 
+- [asr/streaming_text.py](asr/streaming_text.py): partial/final transcript normalization, stabilization, merge, display, wrapping, and context trimming.
+- [asr/endpointing_tools.py](asr/endpointing_tools.py): frame sizing, speech/silence thresholds, endpoint detection, and flush timing helpers.
+- [asr/diarization_tools.py](asr/diarization_tools.py): speaker-tag word normalization, speaker turns, labels, durations, overlaps, and relabeling.
+- [stream/chunk_tools.py](stream/chunk_tools.py): audio chunk sizing, sequencing, missing packet checks, latency, jitter, RTF, and backpressure helpers.
+- [edge/resource_policy.py](edge/resource_policy.py): low-resource policy helpers for memory, disk, latency, battery, thermal, model choice, and degradation mode.
 - [subtitles/subtitle_tools.py](subtitles/subtitle_tools.py): parse, write, convert, shift, and merge SRT/VTT cues.
 - [audio/wav_tools.py](audio/wav_tools.py): inspect, write, split, and measure PCM WAV audio.
 - [audio/pcm_tools.py](audio/pcm_tools.py): raw PCM16 helpers, silence trim, gain normalize, energy VAD, and speech segments.

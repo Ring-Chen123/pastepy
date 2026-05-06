@@ -7,6 +7,11 @@ copy-pasteable, standard-library only, and has a direct self-test.
 
 | Category | File | Public API | Use When |
 | --- | --- | --- | --- |
+| Streaming Text | `asr/streaming_text.py` | `normalize_result`, `stable_prefix`, `unstable_suffix`, `merge_partial`, `apply_stream_result`, `display_text`, `suppress_repeated_partial`, `partial_changed_enough`, `wrap_caption`, `trim_context`, `finalize_state` | Displaying and stabilizing partial/final streaming ASR hypotheses. |
+| Endpointing | `asr/endpointing_tools.py` | `frame_ms_to_samples`, `samples_to_ms`, `silence_frames_needed`, `speech_frames_needed`, `is_speech_rms`, `speech_state`, `endpoint_detected`, `split_on_endpoints`, `preroll_frames`, `postroll_frames`, `should_flush_partial` | Detecting utterance boundaries and pause-based flush events. |
+| Diarization Text | `asr/diarization_tools.py` | `normalize_word`, `words_to_speaker_turns`, `format_speaker_turn`, `format_transcript_by_speaker`, `speaker_word_counts`, `speaker_durations`, `relabel_speakers`, `detect_overlaps`, `merge_short_turns`, `active_speaker_at` | Formatting ASR speaker tags into readable turns and metrics. |
+| Stream Chunks | `stream/chunk_tools.py` | `bytes_per_chunk`, `iter_byte_chunks`, `chunk_count`, `sequence_chunks`, `missing_sequences`, `chunk_timestamp`, `latency_ms`, `jitter_ms`, `real_time_factor`, `should_backpressure`, `drop_oldest` | Managing fixed-size audio chunks, latency, RTF, and queue pressure. |
+| Resource Policy | `edge/resource_policy.py` | `within_budget`, `memory_headroom`, `disk_headroom`, `choose_chunk_ms`, `choose_model`, `should_use_low_power`, `should_throttle`, `sample_rate_for_power`, `max_queue_for_memory`, `retry_allowed`, `degrade_mode`, `feature_allowed` | Choosing edge AI behavior under memory, disk, latency, battery, and thermal constraints. |
 | Subtitles | `subtitles/subtitle_tools.py` | `parse_timestamp`, `format_srt_timestamp`, `format_vtt_timestamp`, `make_cue`, `parse_srt`, `to_srt`, `parse_vtt`, `to_vtt`, `shift_cues`, `merge_close_cues`, `cues_to_text`, `split_text_to_cues` | Reading, writing, converting, or adjusting SRT/VTT captions from ASR output. |
 | WAV Audio | `audio/wav_tools.py` | `wav_info`, `read_wav_frames`, `write_wav`, `wav_duration`, `split_wav`, `pcm16_silence`, `pcm16_peak`, `pcm16_rms`, `pcm16_to_mono`, `dbfs_from_rms` | Inspecting and chunking PCM WAV files before local ASR. |
 | Raw PCM | `audio/pcm_tools.py` | `pcm16_samples`, `pcm16_bytes`, `sample_count`, `frame_windows`, `pcm16_rms`, `trim_silence`, `normalize_gain`, `energy_vad`, `speech_segments`, `pad_audio`, `validate_sample_rate`, `validate_channels`, `clipping_ratio`, `noise_floor`, `level_histogram`, `write_chunk_manifest`, `media_filename`, `cleanup_retention` | Preprocessing raw PCM16 audio for ASR capture and segmentation. |
@@ -60,6 +65,11 @@ copy-pasteable, standard-library only, and has a direct self-test.
 ## Choosing Quickly
 
 - Need captions from ASR: start with `subtitles/subtitle_tools.py`.
+- Need streaming partial text handling: start with `asr/streaming_text.py`.
+- Need endpoint detection: start with `asr/endpointing_tools.py`.
+- Need speaker-tag formatting: start with `asr/diarization_tools.py`.
+- Need audio stream chunk accounting: start with `stream/chunk_tools.py`.
+- Need resource-aware edge policy: start with `edge/resource_policy.py`.
 - Need to cut audio before ASR: start with `audio/wav_tools.py`.
 - Need raw PCM preprocessing or simple VAD: start with `audio/pcm_tools.py`.
 - Need to clean transcript text: start with `ai/transcript_tools.py`.
