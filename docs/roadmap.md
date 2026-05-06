@@ -4,8 +4,6 @@ This roadmap lists useful modules that fit pastepy's constraints. It is not a
 promise to build everything. Small, readable modules are preferred over broad
 coverage.
 
-For a larger edge/embedded AI feature backlog, see `docs/edge_feature_ideas.md`.
-
 ## Current Modules
 
 ### Core MVP

@@ -173,8 +173,9 @@ pastepy/
   config/
     env_loader.py
   docs/
-    codex_handoff.md
     design.md
+    feature_index.md
+    maturity.md
     roadmap.md
   fs/
     atomic_file.py

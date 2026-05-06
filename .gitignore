@@ -35,3 +35,8 @@ dist/
 Thumbs.db
 .idea/
 .vscode/
+
+# Internal planning docs
+docs/codex_handoff.md
+docs/task_template.md
+docs/edge_feature_ideas.md

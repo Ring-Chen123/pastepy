@@ -113,9 +113,6 @@ pastepy currently includes 41 single-file modules and 311 public entry points.
 For a searchable-by-category overview, see
 [docs/feature_index.md](docs/feature_index.md).
 
-For the next edge/embedded AI expansion backlog, see
-[docs/edge_feature_ideas.md](docs/edge_feature_ideas.md).
-
 ### HTTP
 
 - [http/simple_http.py](http/simple_http.py): minimal GET/POST client with timeout, retry, and JSON helpers.
