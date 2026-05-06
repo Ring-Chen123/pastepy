@@ -1,3 +1,7 @@
+<p align="center">
+  <img src=".asset/icon.png" alt="pastepy icon" width="160">
+</p>
+
 # pastepy
 
 > Copy. Paste. Done.
