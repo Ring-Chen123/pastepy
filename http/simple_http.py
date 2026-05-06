@@ -107,18 +107,20 @@ def post(url, data=None, json=None, headers=None, timeout=5, retries=0):
 
 if __name__ == "__main__":
     import sys
-    if "--debug" in sys.argv:
+    DEBUG = "--debug" in sys.argv
+    if DEBUG:
         print("[DEBUG] Running self test with debug output")
-        
     print("[TEST] simple_http")
 
     try:
         r = get("https://httpbin.org/get", timeout=3, retries=1)
         assert r.status == 200
+        print(r.text[:100], "...") if DEBUG else None
         print("[OK] GET")
 
         r = post("https://httpbin.org/post", json={"a": 1}, timeout=3, retries=1)
         assert r.status == 200
+        print(r.text[:100], "...") if DEBUG else None
         print("[OK] POST")
 
         print("[DONE]")
